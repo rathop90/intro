@@ -5,65 +5,73 @@ const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('canv
 renderer.setSize(window.innerWidth, window.innerHeight);
 
 // Lighting
-const ambientLight = new THREE.AmbientLight(0x404040, 0.5);
+const ambientLight = new THREE.AmbientLight(0x202020, 0.3);
 scene.add(ambientLight);
-const pointLight = new THREE.PointLight(0xff1493, 2, 100);
+const pointLight = new THREE.PointLight(0xff0000, 3, 100);
 pointLight.position.set(5, 5, 5);
 scene.add(pointLight);
 
-// Katana with Glow
-const katanaGeometry = new THREE.BoxGeometry(0.1, 0.1, 5);
-const katanaMaterial = new THREE.MeshPhongMaterial({ color: 0xffffff, emissive: 0xff1493, shininess: 150 });
+// Katana with Dark Glow
+const katanaGeometry = new THREE.BoxGeometry(0.15, 0.15, 6);
+const katanaMaterial = new THREE.MeshPhongMaterial({ color: 0x333333, emissive: 0xff0000, shininess: 200 });
 const katana = new THREE.Mesh(katanaGeometry, katanaMaterial);
 scene.add(katana);
 
-// Energy Orb (Anime Power Core)
-const orbGeometry = new THREE.SphereGeometry(0.5, 32, 32);
-const orbMaterial = new THREE.MeshBasicMaterial({ color: 0x00ffff, transparent: true, opacity: 0.8 });
-const orb = new THREE.Mesh(orbGeometry, orbMaterial);
-orb.position.set(0, 1, 0);
-scene.add(orb);
+// Energy Core (Stark Reactor Vibes)
+const coreGeometry = new THREE.TorusGeometry(0.8, 0.2, 16, 100);
+const coreMaterial = new THREE.MeshBasicMaterial({ color: 0xff4500, wireframe: true });
+const core = new THREE.Mesh(coreGeometry, coreMaterial);
+core.position.set(0, 1.5, 0);
+scene.add(core);
 
-// Sakura Petals with Intensity
+// HUD Lines (Anime x Stark Tech)
+const hudGeometry = new THREE.RingGeometry(2, 2.1, 32);
+const hudMaterial = new THREE.MeshBasicMaterial({ color: 0xff0000, side: THREE.DoubleSide, transparent: true, opacity: 0.5 });
+const hud = new THREE.Mesh(hudGeometry, hudMaterial);
+hud.rotation.x = Math.PI / 2;
+scene.add(hud);
+
+// Particles (Energy Sparks)
 const particles = new THREE.Group();
-const particleCount = 200;
-const particleGeometry = new THREE.TetrahedronGeometry(0.1, 0);
-const particleMaterial = new THREE.MeshPhongMaterial({ color: 0xff69b4, emissive: 0xff1493 });
+const particleCount = 300;
+const particleGeometry = new THREE.SphereGeometry(0.05, 8, 8);
+const particleMaterial = new THREE.MeshBasicMaterial({ color: 0xff4500 });
 
 for (let i = 0; i < particleCount; i++) {
     const particle = new THREE.Mesh(particleGeometry, particleMaterial);
     particle.position.set(
-        (Math.random() - 0.5) * 30,
-        (Math.random() - 0.5) * 30,
-        (Math.random() - 0.5) * 30
+        (Math.random() - 0.5) * 40,
+        (Math.random() - 0.5) * 40,
+        (Math.random() - 0.5) * 40
     );
-    particle.rotation.set(Math.random(), Math.random(), Math.random());
     particles.add(particle);
 }
 scene.add(particles);
 
-camera.position.z = 7;
+camera.position.z = 8;
 
 // Animation Loop
 let time = 0;
 function animate() {
     requestAnimationFrame(animate);
-    time += 0.05;
+    time += 0.03;
 
     // Katana Spin
     katana.rotation.x += 0.02;
-    katana.rotation.y += 0.03;
+    katana.rotation.y += 0.04;
 
-    // Orb Pulse
-    orb.scale.set(1 + Math.sin(time) * 0.2, 1 + Math.sin(time) * 0.2, 1 + Math.sin(time) * 0.2);
+    // Core Pulse
+    core.rotation.z += 0.05;
+    core.scale.set(1 + Math.sin(time) * 0.3, 1 + Math.sin(time) * 0.3, 1);
 
-    // Particles (Sakura Storm)
+    // HUD Rotation
+    hud.rotation.z += 0.01;
+
+    // Particles (Energy Storm)
     particles.children.forEach(particle => {
-        particle.position.y -= 0.05;
-        particle.position.x += Math.sin(time + particle.position.z) * 0.02;
-        if (particle.position.y < -15) particle.position.y = 15;
-        particle.rotation.x += 0.02;
-        particle.rotation.z += 0.02;
+        particle.position.y -= 0.1;
+        particle.position.x += Math.sin(time + particle.position.z) * 0.05;
+        if (particle.position.y < -20) particle.position.y = 20;
     });
 
     renderer.render(scene, camera);
@@ -79,6 +87,6 @@ window.addEventListener('resize', () => {
 
 // Button Interaction
 document.querySelector('.explore-btn').addEventListener('click', () => {
-    alert("Code ka shogun bolta hai: Duniya meri mutthi mein!");
+    alert("JARVIS, boot up the system—Satrkyy’s in the house!");
     // Add portfolio link or next step here
 });
