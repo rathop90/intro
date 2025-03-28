@@ -3,7 +3,7 @@ body {
     padding: 0;
     overflow: hidden;
     font-family: 'Arial', sans-serif;
-    background: #0d0d0d;
+    background: linear-gradient(135deg, #1a0000, #0d0d0d);
 }
 
 #canvas {
@@ -23,45 +23,53 @@ body {
     text-align: center;
     color: #fff;
     z-index: 2;
-    text-shadow: 0 0 10px rgba(255, 0, 0, 0.8), 0 0 20px rgba(255, 0, 0, 0.5);
+    text-shadow: 0 0 15px rgba(255, 20, 147, 0.9), 0 0 30px rgba(255, 20, 147, 0.7);
 }
 
 h1 {
-    font-size: 4rem;
+    font-size: 5rem;
     margin: 0;
-    letter-spacing: 5px;
-    animation: neon 1.5s ease-in-out infinite alternate;
+    letter-spacing: 8px;
+    animation: neonPulse 1.2s ease-in-out infinite alternate;
     font-family: 'Courier New', monospace;
+    background: -webkit-linear-gradient(#ff1493, #00ffff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 p {
-    font-size: 1.5rem;
-    margin: 10px 0;
-    color: #ccc;
+    font-size: 2rem;
+    margin: 15px 0;
+    color: #e0e0e0;
+    letter-spacing: 3px;
+    text-transform: uppercase;
 }
 
 .explore-btn {
-    padding: 15px 30px;
-    font-size: 1.2rem;
+    padding: 20px 40px;
+    font-size: 1.5rem;
     background: none;
-    border: 2px solid #ff004f;
+    border: 3px solid #ff1493;
     color: #fff;
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: all 0.4s ease;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 4px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px #ff1493;
 }
 
 .explore-btn:hover {
-    background: #ff004f;
-    box-shadow: 0 0 20px #ff004f;
+    background: #ff1493;
+    box-shadow: 0 0 30px #ff1493, 0 0 60px #00ffff;
+    color: #000;
 }
 
-@keyframes neon {
+@keyframes neonPulse {
     from {
-        text-shadow: 0 0 10px #fff, 0 0 20px #ff004f, 0 0 30px #ff004f;
+        text-shadow: 0 0 10px #fff, 0 0 20px #ff1493, 0 0 40px #00ffff;
     }
     to {
-        text-shadow: 0 0 20px #fff, 0 0 30px #ff004f, 0 0 40px #ff004f;
+        text-shadow: 0 0 20px #fff, 0 0 40px #ff1493, 0 0 80px #00ffff;
     }
 }
