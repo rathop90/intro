@@ -3,7 +3,7 @@ body {
     padding: 0;
     overflow: hidden;
     font-family: 'Arial', sans-serif;
-    background: linear-gradient(135deg, #1a0000, #0d0d0d);
+    background: linear-gradient(45deg, #1a0000, #000000);
 }
 
 #canvas {
@@ -13,6 +13,7 @@ body {
     width: 100%;
     height: 100%;
     z-index: 1;
+    filter: contrast(1.2);
 }
 
 .overlay {
@@ -23,53 +24,156 @@ body {
     text-align: center;
     color: #fff;
     z-index: 2;
-    text-shadow: 0 0 15px rgba(255, 20, 147, 0.9), 0 0 30px rgba(255, 20, 147, 0.7);
+    text-shadow: 0 0 20px rgba(255, 0, 0, 0.9), 0 0 40px rgba(255, 0, 0, 0.6);
 }
 
 h1 {
-    font-size: 5rem;
+    font-size: 6rem;
     margin: 0;
-    letter-spacing: 8px;
-    animation: neonPulse 1.2s ease-in-out infinite alternate;
+    letter-spacing: 10px;
+    animation: starkGlow 1s ease-in-out infinite alternate;
     font-family: 'Courier New', monospace;
-    background: -webkit-linear-gradient(#ff1493, #00ffff);
+    background: -webkit-linear-gradient(#ff0000, #ff4500);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
 
 p {
-    font-size: 2rem;
-    margin: 15px 0;
-    color: #e0e0e0;
-    letter-spacing: 3px;
+    font-size: 2.2rem;
+    margin: 10px 0;
+    color: #b0b0b0;
+    letter-spacing: 5px;
     text-transform: uppercase;
+}
+
+.stark-message {
+    font-size: 1.5rem;
+    color: #ff4500;
+    margin: 20px 0;
+    font-style: italic;
+    text-shadow: 0 0 10px #ff4500;
+    animation: fadeIn 2s ease-in-out infinite;
 }
 
 .explore-btn {
-    padding: 20px 40px;
-    font-size: 1.5rem;
+    padding: 20px 50px;
+    font-size: 1.8rem;
     background: none;
-    border: 3px solid #ff1493;
+    border: 4px solid #ff0000;
     color: #fff;
     cursor: pointer;
-    transition: all 0.4s ease;
+    transition: all 0.5s ease;
     text-transform: uppercase;
-    letter-spacing: 4px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px #ff1493;
+    letter-spacing: 6px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px #ff0000;
 }
 
 .explore-btn:hover {
-    background: #ff1493;
-    box-shadow: 0 0 30px #ff1493, 0 0 60px #00ffff;
+    background: #ff0000;
+    box-shadow: 0 0 40px #ff0000, 0 0 80px #ff4500;
     color: #000;
 }
 
-@keyframes neonPulse {
+@keyframes starkGlow {
     from {
-        text-shadow: 0 0 10px #fff, 0 0 20px #ff1493, 0 0 40px #00ffff;
+        text-shadow: 0 0 10px #fff, 0 0 20px #ff0000, 0 0 40px #ff4500;
     }
     to {
-        text-shadow: 0 0 20px #fff, 0 0 40px #ff1493, 0 0 80px #00ffff;
+        text-shadow: 0 0 20px #fff, 0 0 40px #ff0000, 0 0 80px #ff4500;
     }
+}
+
+@keyframes fadeIn {
+    0%, 100% { opacity: 0.7; }
+    50% { opacity: 1; }
+}body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(45deg, #1a0000, #000000);
+}
+
+#canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    filter: contrast(1.2);
+}
+
+.overlay {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #fff;
+    z-index: 2;
+    text-shadow: 0 0 20px rgba(255, 0, 0, 0.9), 0 0 40px rgba(255, 0, 0, 0.6);
+}
+
+h1 {
+    font-size: 6rem;
+    margin: 0;
+    letter-spacing: 10px;
+    animation: starkGlow 1s ease-in-out infinite alternate;
+    font-family: 'Courier New', monospace;
+    background: -webkit-linear-gradient(#ff0000, #ff4500);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+p {
+    font-size: 2.2rem;
+    margin: 10px 0;
+    color: #b0b0b0;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+}
+
+.stark-message {
+    font-size: 1.5rem;
+    color: #ff4500;
+    margin: 20px 0;
+    font-style: italic;
+    text-shadow: 0 0 10px #ff4500;
+    animation: fadeIn 2s ease-in-out infinite;
+}
+
+.explore-btn {
+    padding: 20px 50px;
+    font-size: 1.8rem;
+    background: none;
+    border: 4px solid #ff0000;
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.5s ease;
+    text-transform: uppercase;
+    letter-spacing: 6px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px #ff0000;
+}
+
+.explore-btn:hover {
+    background: #ff0000;
+    box-shadow: 0 0 40px #ff0000, 0 0 80px #ff4500;
+    color: #000;
+}
+
+@keyframes starkGlow {
+    from {
+        text-shadow: 0 0 10px #fff, 0 0 20px #ff0000, 0 0 40px #ff4500;
+    }
+    to {
+        text-shadow: 0 0 20px #fff, 0 0 40px #ff0000, 0 0 80px #ff4500;
+    }
+}
+
+@keyframes fadeIn {
+    0%, 100% { opacity: 0.7; }
+    50% { opacity: 1; }
 }
