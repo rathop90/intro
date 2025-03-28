@@ -1,0 +1,69 @@
+// Three.js Setup
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+const renderer = new THREE.WebGLRenderer({ canvas: document.getElementById('canvas'), alpha: true });
+renderer.setSize(window.innerWidth, window.innerHeight);
+
+// Lighting
+const ambientLight = new THREE.AmbientLight(0x404040);
+scene.add(ambientLight);
+const pointLight = new THREE.PointLight(0xff004f, 1, 100);
+pointLight.position.set(0, 10, 10);
+scene.add(pointLight);
+
+// Anime-inspired 3D Object (Simplified Katana)
+const katanaGeometry = new THREE.BoxGeometry(0.1, 0.1, 4);
+const katanaMaterial = new THREE.MeshPhongMaterial({ color: 0xcccccc, shininess: 100 });
+const katana = new THREE.Mesh(katanaGeometry, katanaMaterial);
+scene.add(katana);
+
+// Floating Particles (Sakura Petals Effect)
+const particles = new THREE.Group();
+const particleCount = 100;
+const particleGeometry = new THREE.SphereGeometry(0.05, 16, 16);
+const particleMaterial = new THREE.MeshBasicMaterial({ color: 0xffb6c1 });
+
+for (let i = 0; i < particleCount; i++) {
+    const particle = new THREE.Mesh(particleGeometry, particleMaterial);
+    particle.position.set(
+        (Math.random() - 0.5) * 20,
+        (Math.random() - 0.5) * 20,
+        (Math.random() - 0.5) * 20
+    );
+    particles.add(particle);
+}
+scene.add(particles);
+
+camera.position.z = 5;
+
+// Animation Loop
+function animate() {
+    requestAnimationFrame(animate);
+
+    // Rotate Katana
+    katana.rotation.x += 0.01;
+    katana.rotation.y += 0.02;
+
+    // Animate Particles (Sakura Falling)
+    particles.children.forEach(particle => {
+        particle.position.y -= 0.02;
+        if (particle.position.y < -10) particle.position.y = 10;
+        particle.rotation.z += 0.01;
+    });
+
+    renderer.render(scene, camera);
+}
+animate();
+
+// Responsive Resizing
+window.addEventListener('resize', () => {
+    renderer.setSize(window.innerWidth, window.innerHeight);
+    camera.aspect = window.innerWidth / window.innerHeight;
+    camera.updateProjectionMatrix();
+});
+
+// Button Interaction
+document.querySelector('.explore-btn').addEventListener('click', () => {
+    alert("Welcome to my world, fellow traveler!");
+    // Add your redirect or next page logic here
+});
